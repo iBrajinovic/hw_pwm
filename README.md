@@ -21,9 +21,13 @@ Before working with the hardware pwm, you need to edit the config.txt file that 
 
 # Usage
 
-The way I indented this to work is to connect PIN 3 and 5 to a button that has a pull down resistor connected to the input so that the inputs are activated by a logical HIGH (on release of the button because the GPIO 18 and 19 have an internal pull up ressistor). By default you will have a resolution of 1 and will manipulate the `GPIO 18 | PWM channel 0`. You can change the implementation of the *channel select* pin by adding another pin and not having to toggle between PWM channels and having separate increase/decrease pins but this is something I did to save resources as then you would need more buttons(you can really see the point in doing this if you need to have more PWM channels, let's say 6. Instead of having 12 buttons, we have 2 buttons and 3 switches).
+First, connect PIN 3 and 5 to a button that has a pull down resistor connected to the input so that the inputs are activated by a logical HIGH (on release of the button because the GPIO 18 and 19 have an internal pull up ressistor).By default you will have a resolution of 1 and will manipulate the `GPIO 18 | PWM channel 0`. 
 
-To use the 0.1 resolultion you need to press and hold the opposite button(if you want to increase the value, hold pressed the decrease button) and use the other button as you would usually and you will see the resolution is now 0.1.
+You can change the implementation of the *channel select* pin by adding another pin and not having to toggle between PWM channels and having separate increase/decrease pins but this is something I did to save resources as then you would need more buttons(you can really see the point in doing this if you need to have more PWM channels, let's say 6. Instead of having 12 buttons, we have 2 buttons and 3 switches).
+
+Now by pressing the buttons, you have the reolution of *1*.
+
+To use the *0.1* resolultion you need to press and hold the opposite button(if you want to increase the value, hold pressed the decrease button) and use the other button as you would usually and you will see the resolution is now 0.1.
 
 
 
