@@ -1,6 +1,10 @@
 # About
 
-This is a hardware PWM generator for the RPi(4 in my case). In my case, the software simulated PWM was not percise enough and I had to use the PWM chip inside the RPi to generate a real, reliable PWM signal. 
+This is a hardware PWM generator for the RPi(4 in my case). In my case, the software simulated PWM was not percise enough and I had to use the PWM chip inside the RPi to generate a real, reliable PWM signal. It has the ability to increment by 1 or by 0.1.
+
+# Requirements
+
+Before working with the hardware pwm, you need to edit the config.txt file that is located on the SD card of the RPi. I didn't have success in editing it live so I had to edit it by inserting the card in my laptop. Once you locate and open the config.txt file, insert this line of code `dtoverlay=pwm-2chan`. For more info, visit [this website](https://pypi.org/project/rpi-hardware-pwm/).
 
 ## Pinout
 
@@ -15,10 +19,19 @@ This is a hardware PWM generator for the RPi(4 in my case). In my case, the soft
 - GPIO 3 - PIN 5 - decrease duty cycle
 - GPIO 4 - PIN 7 - channel select
 
-# How to
+# Usage
 
-Depending on the use case, you might need only the raw PWM signal. If you use the PWM to manage the brighness of a LED, your eyes do the signal avereging because they are unable to see the LED going off and on and hence you see the light as brighter or darker. Also, if you have an input that you are delivering the PWM signal to, the reading speed of the signal might be slow enough so that you don't need an evener(the input would be the eyes in the previous example).
+The way I indented this to work is to connect PIN 3 and 5 to a button that has a pull down resistor connected to the input so that the inputs are activated by a logical HIGH (on release of the button because the GPIO 18 and 19 have an internal pull up ressistor). By default you will have a resolution of 1 and will manipulate the `GPIO 18 | PWM channel 0`. You can change the implementation of the *channel select* pin by adding another pin and not having to toggle between PWM channels and having separate increase/decrease pins but this is something I did to save resources as then you would need more buttons(you can really see the point in doing this if you need to have more PWM channels, let's say 6. Instead of having 12 buttons, we have 2 buttons and 3 switches).
 
-But for me that is not the case. I need to be able to get 2 voltage ranges, 0 -> 5 V and 0 -> 12 V. Given that the RPi gives out 3.3V on the outputs I have to use some additional components (NPN Transistor in my case) to manipulate the higher supply voltage and I also need to even out the PWM signal I would get from the transistor so I am using a Low-Pass filter(capacitor shorted to ground).
+To use the 0.1 resolultion you need to press and hold the opposite button(if you want to increase the value, hold pressed the decrease button) and use the other button as you would usually and you will see the resolution is now 0.1.
 
-# 
+
+
+
+
+
+
+
+
+
+
