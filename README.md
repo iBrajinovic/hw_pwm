@@ -23,7 +23,7 @@ Before working with the hardware pwm, you need to edit the config.txt file that 
 
 ## Connecting the buttons
 
-Connect PIN 3 and 5 to a button connected to a pull down resistor. By default you will have a resolution of **1** and will manipulate the *GPIO 18 | PWM channel 0*. 
+Connect PIN 3 and 5 to a button connected to a pull down resistor. By default you will have a resolution of **1** and will manipulate the *GPIO 18 | PWM channel 0*. I don't use buttons, I have wires connected to the input pins and then connect them to ground or 3.3V. 
 
 ## 0.1 Resolution
 
